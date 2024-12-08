@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+    <inherits name="com.google.gwt.user.User"/>
+
+    <!-- Inherit Guava. -->
+    <inherits name="com.google.common.base.Base"/>
+    <inherits name="com.google.common.cache.Cache"/>
+    <inherits name="com.google.common.collect.Collect"/>
+
+    <source path=""/>
+
+    <super-source path="super"/>
+</module>

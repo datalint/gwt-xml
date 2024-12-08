@@ -1,3 +1,9 @@
+.*
+!.gitignore
+
+target/
+gwt-unitCache/
+
 # Compiled class file
 *.class
 

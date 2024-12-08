@@ -1,0 +1,8 @@
+.dui-datatable-th-title {
+    white-space: pre-wrap;
+}
+
+.edit-column-config {
+    display: flex;
+    gap: var(--dui-spc-2);
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+    <!-- Enable I18N -->
+    <inherits name="com.google.gwt.i18n.I18N"/>
+    <extend-property name="locale" values="en,nl"/>
+    <set-property name="locale" value="en,nl"/>
+    <set-property-fallback name="locale" value="en"/>
+    <set-configuration-property name="locale.cookie" value="locale"/>
+    <set-configuration-property name="locale.useragent" value="Y"/>
+
+    <source path=""/>
+
+    <entry-point class="gwt.xml.test.client.App"/>
+</module>

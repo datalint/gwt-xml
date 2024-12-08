@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.datalint.gwt.xml</groupId>
+        <artifactId>xml-parent</artifactId>
+        <version>1.0</version>
+    </parent>
+    <groupId>com.datalint.gwt.xml.test</groupId>
+    <artifactId>test-parent</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>client</module>
+        <module>shared</module>
+        <module>server</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>net.ltgt.gwt.maven</groupId>
+                <artifactId>gwt-maven-plugin</artifactId>
+                <inherited>false</inherited>
+                <configuration>
+                    <launcherDir>${basedir}/server/target/classes/public/</launcherDir>
+                    <moduleName/>
+                    <codeserverArgs>
+                        -bindAddress,0.0.0.0,-src,../../../client/src/main/java,-src,../../../shared/src/main/java
+                    </codeserverArgs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
