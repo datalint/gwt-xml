@@ -20,7 +20,6 @@
         <dependency>
             <groupId>${xml.groupId}</groupId>
             <artifactId>xml-server</artifactId>
-            <classifier>classes</classifier>
         </dependency>
 
         <dependency>

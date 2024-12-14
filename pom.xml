@@ -62,6 +62,16 @@
                 <artifactId>domino-ui</artifactId>
                 <version>${domino-ui.version}</version>
                 <classifier>sources</classifier>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.google.elemental2</groupId>
+                        <artifactId>elemental2-core</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>com.google.elemental2</groupId>
+                        <artifactId>elemental2-dom</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
             <dependency>
@@ -96,13 +106,6 @@
                 <groupId>${xml.groupId}</groupId>
                 <artifactId>xml-server</artifactId>
                 <version>${xml.version}</version>
-                <classifier>classes</classifier>
-                <exclusions>
-                    <exclusion>
-                        <groupId>${xml.groupId}</groupId>
-                        <artifactId>xml-client-test</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -171,15 +174,6 @@
         </pluginManagement>
 
         <plugins>
-            <plugin>
-                <groupId>net.ltgt.gwt.maven</groupId>
-                <artifactId>gwt-maven-plugin</artifactId>
-                <inherited>false</inherited>
-                <configuration>
-                    <launcherDir>${basedir}/server/target/classes/public/</launcherDir>
-                    <moduleName/>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
