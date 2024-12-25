@@ -1,4 +1,4 @@
-package gwt.xml;
+package gwt.xml.test.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,7 +13,7 @@ import java.io.File;
 import java.util.Objects;
 
 @SpringBootApplication
-@ServletComponentScan(basePackages = {"gwt.xml"})
+@ServletComponentScan(basePackages = {"gwt.xml.test"})
 public class Application extends SpringBootServletInitializer {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);

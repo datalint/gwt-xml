@@ -27,13 +27,9 @@
                     <launcherDir>${basedir}/server/target/classes/public/</launcherDir>
                     <moduleName/>
                     <codeserverArgs>
-                        -bindAddress,0.0.0.0,-src,../../../client/src/main/java,-src,../../../shared/src/main/java
+                        -bindAddress,0.0.0.0,-src,../../client/src/main/java,-src,../../shared/src/main/java
                     </codeserverArgs>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
             </plugin>
         </plugins>
     </build>

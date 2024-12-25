@@ -1,13 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module>
-    <inherits name="com.google.gwt.user.User"/>
-
-    <!-- Inherit Guava. -->
-    <inherits name="com.google.common.base.Base"/>
-    <inherits name="com.google.common.cache.Cache"/>
     <inherits name="com.google.common.collect.Collect"/>
+    <inherits name="com.google.common.xml.Xml"/>
+
+    <replace-with class="gwt.xml.shared.impl.XmlParserImplStandard">
+        <when-type-is class="gwt.xml.shared.impl.XmlParserImpl"/>
+    </replace-with>
+
+    <replace-with class="gwt.xml.shared.impl.XmlParserImplIE6">
+        <when-type-is class="gwt.xml.shared.impl.XmlParserImpl"/>
+        <any>
+            <when-property-is name="user.agent" value="ie8"/>
+            <when-property-is name="user.agent" value="ie9"/>
+            <when-property-is name="user.agent" value="ie10"/>
+            <when-property-is name="user.agent" value="ie11"/>
+        </any>
+    </replace-with>
+
+    <replace-with class="gwt.xml.shared.impl.XmlParserImplSafari">
+        <when-type-is class="gwt.xml.shared.impl.XmlParserImpl"/>
+        <when-property-is name="user.agent" value="safari"/>
+    </replace-with>
+
+    <replace-with class="gwt.xml.shared.impl.XmlUtilImplIE">
+        <when-type-is class="gwt.xml.shared.impl.XmlUtilImpl"/>
+        <any>
+            <when-property-is name="user.agent" value="ie11"/>
+        </any>
+    </replace-with>
+
+    <replace-with class="gwt.xml.shared.impl.XPathImplStandard">
+        <when-type-is class="gwt.xml.shared.impl.XPathImpl"/>
+    </replace-with>
+
+    <replace-with class="gwt.xml.shared.impl.XPathImplIE">
+        <when-type-is class="gwt.xml.shared.impl.XPathImpl"/>
+        <any>
+            <when-property-is name="user.agent" value="ie11"/>
+        </any>
+    </replace-with>
+
+    <replace-with class="gwt.xml.shared.impl.XsltImplStandard">
+        <when-type-is class="gwt.xml.shared.impl.XsltImpl"/>
+    </replace-with>
+
+    <replace-with class="gwt.xml.shared.impl.XsltImplIE">
+        <when-type-is class="gwt.xml.shared.impl.XsltImpl"/>
+        <any>
+            <when-property-is name="user.agent" value="ie11"/>
+        </any>
+    </replace-with>
 
     <source path=""/>
-
     <super-source path="super"/>
 </module>

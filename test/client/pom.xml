@@ -28,11 +28,6 @@
             <groupId>${xml.groupId}</groupId>
             <artifactId>xml-client</artifactId>
         </dependency>
-        <dependency>
-            <groupId>${xml.groupId}</groupId>
-            <artifactId>xml-client</artifactId>
-            <type>gwt-lib</type>
-        </dependency>
     </dependencies>
 
     <build>
