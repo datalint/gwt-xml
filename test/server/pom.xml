@@ -33,6 +33,16 @@
             <artifactId>spring-boot-devtools</artifactId>
             <scope>provided</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.microsoft.playwright</groupId>
+            <artifactId>playwright</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -76,12 +86,21 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>**/playwright/**</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
     <profiles>
         <profile>
-            <!-- XXX: We want to exclude client from 'env-dev' profile, Maven forces us to make a 'env-prod' profile -->
+            <!-- XXX: We want to exclude client from 'env-dev' profile, Maven forces us to make an 'env-prod' profile -->
             <id>env-prod</id>
             <activation>
                 <activeByDefault>true</activeByDefault>

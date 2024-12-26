@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module>
     <inherits name="gwt.xml.Xml"/>
+    <inherits name="org.dominokit.domino.ui.DominoUI"/>
 
     <source path=""/>
 

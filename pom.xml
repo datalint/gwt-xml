@@ -20,8 +20,10 @@
         <gwt.version>2.12.1</gwt.version>
         <spring-boot.version>3.4.0</spring-boot.version>
         <guava.version>33.3.1-jre</guava.version>
+        <elemental2.version>1.2.3</elemental2.version>
         <domino-ui.version>2.0.3</domino-ui.version>
         <saxon-he.version>12.5</saxon-he.version>
+        <playwright.version>1.49.0</playwright.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -51,35 +53,39 @@
             </dependency>
 
             <dependency>
+                <groupId>com.google.elemental2</groupId>
+                <artifactId>elemental2-core</artifactId>
+                <version>${elemental2.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.elemental2</groupId>
+                <artifactId>elemental2-dom</artifactId>
+                <version>${elemental2.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.elemental2</groupId>
+                <artifactId>elemental2-svg</artifactId>
+                <version>${elemental2.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.elemental2</groupId>
+                <artifactId>elemental2-webstorage</artifactId>
+                <version>${elemental2.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>org.dominokit</groupId>
                 <artifactId>domino-ui</artifactId>
                 <version>${domino-ui.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>com.google.elemental2</groupId>
-                        <artifactId>elemental2-core</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>com.google.elemental2</groupId>
-                        <artifactId>elemental2-dom</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.dominokit</groupId>
                 <artifactId>domino-ui</artifactId>
                 <version>${domino-ui.version}</version>
                 <classifier>sources</classifier>
-                <exclusions>
-                    <exclusion>
-                        <groupId>com.google.elemental2</groupId>
-                        <artifactId>elemental2-core</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>com.google.elemental2</groupId>
-                        <artifactId>elemental2-dom</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
 
             <dependency>
@@ -107,13 +113,6 @@
             </dependency>
             <dependency>
                 <groupId>${xml.groupId}</groupId>
-                <artifactId>xml-shared</artifactId>
-                <version>${xml.version}</version>
-                <type>test-jar</type>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>${xml.groupId}</groupId>
                 <artifactId>xml-client</artifactId>
                 <version>${xml.version}</version>
             </dependency>
@@ -121,6 +120,21 @@
                 <groupId>${xml.groupId}</groupId>
                 <artifactId>xml-server</artifactId>
                 <version>${xml.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>${xml.groupId}</groupId>
+                <artifactId>xml-shared</artifactId>
+                <version>${xml.version}</version>
+                <type>test-jar</type>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.microsoft.playwright</groupId>
+                <artifactId>playwright</artifactId>
+                <version>${playwright.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
