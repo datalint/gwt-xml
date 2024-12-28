@@ -3,18 +3,18 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.datalint.gwt.xml.test</groupId>
-        <artifactId>test-parent</artifactId>
+        <groupId>com.datalint.gwt.xml</groupId>
+        <artifactId>xml-test-parent</artifactId>
         <version>1.0</version>
     </parent>
 
-    <artifactId>test-server</artifactId>
+    <artifactId>xml-test-server</artifactId>
     <packaging>war</packaging>
 
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>test-shared</artifactId>
+            <artifactId>xml-test-shared</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -108,7 +108,7 @@
             <dependencies>
                 <dependency>
                     <groupId>${project.groupId}</groupId>
-                    <artifactId>test-client</artifactId>
+                    <artifactId>xml-test-client</artifactId>
                     <version>${project.version}</version>
                     <type>war</type>
                     <scope>runtime</scope>
