@@ -1,15 +1,13 @@
 package gwt.xml.test.server;
 
-import gwt.xml.shared.impl.XPathImpl;
-import gwt.xml.shared.impl.XmlParserImpl;
+import gwt.xml.server.impl.IProperty;
 import org.springframework.boot.SpringApplication;
 import org.springframework.core.env.ConfigurableEnvironment;
 
-public class EnvironmentPostProcessor implements org.springframework.boot.env.EnvironmentPostProcessor {
+public class EnvironmentPostProcessor implements org.springframework.boot.env.EnvironmentPostProcessor, IProperty {
     @Override
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
-        setProperty(environment, XmlParserImpl.className);
-        setProperty(environment, XPathImpl.className);
+        getKeys().forEach(key -> setProperty(environment, key));
     }
 
     private void setProperty(ConfigurableEnvironment environment, String key) {
