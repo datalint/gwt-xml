@@ -13,17 +13,16 @@
 
     <dependencies>
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>${xml.groupId}</groupId>
             <artifactId>xml-test-shared</artifactId>
-            <version>${project.version}</version>
+            <version>${xml.version}</version>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>${xml.groupId}</groupId>
             <artifactId>xml-test-shared</artifactId>
-            <version>${project.version}</version>
+            <version>${xml.version}</version>
             <classifier>sources</classifier>
         </dependency>
-
         <dependency>
             <groupId>${xml.groupId}</groupId>
             <artifactId>xml-client</artifactId>

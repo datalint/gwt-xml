@@ -22,11 +22,11 @@
         </dependency>
 
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>${xml.groupId}</groupId>
             <artifactId>xml-shared</artifactId>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>${xml.groupId}</groupId>
             <artifactId>xml-shared</artifactId>
             <classifier>sources</classifier>
         </dependency>

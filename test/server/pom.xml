@@ -13,9 +13,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>${xml.groupId}</groupId>
             <artifactId>xml-test-shared</artifactId>
-            <version>${project.version}</version>
+            <version>${xml.version}</version>
         </dependency>
         <dependency>
             <groupId>${xml.groupId}</groupId>
@@ -39,6 +39,7 @@
             <artifactId>junit-jupiter-engine</artifactId>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>com.microsoft.playwright</groupId>
             <artifactId>playwright</artifactId>
@@ -107,9 +108,9 @@
             </activation>
             <dependencies>
                 <dependency>
-                    <groupId>${project.groupId}</groupId>
+                    <groupId>${xml.groupId}</groupId>
                     <artifactId>xml-test-client</artifactId>
-                    <version>${project.version}</version>
+                    <version>${xml.version}</version>
                     <type>war</type>
                     <scope>runtime</scope>
                 </dependency>

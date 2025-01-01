@@ -12,7 +12,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>${xml.groupId}</groupId>
             <artifactId>xml-shared</artifactId>
         </dependency>
 
@@ -27,7 +27,7 @@
         </dependency>
 
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>${xml.groupId}</groupId>
             <artifactId>xml-shared</artifactId>
             <type>test-jar</type>
         </dependency>
