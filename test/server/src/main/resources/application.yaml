@@ -24,6 +24,10 @@ spring:
     ansi:
       enabled: detect
 
+  profiles:
+    include:
+      - xml
+
   servlet:
     multipart:
       max-file-size: 20MB

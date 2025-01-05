@@ -14,14 +14,6 @@ public class XmlParserImpl {
         return Lazy.instance;
     }
 
-    private static XmlParserImpl findInstance() {
-        try {
-            return (XmlParserImpl) Class.forName(System.getProperty(className)).newInstance();
-        } catch (Exception e) {
-            return new XmlParserImpl();
-        }
-    }
-
     protected XmlParserImpl() {
     }
 
@@ -46,6 +38,6 @@ public class XmlParserImpl {
     }
 
     private static class Lazy {
-        private static final XmlParserImpl instance = findInstance();
+        private static final XmlParserImpl instance = SuperUtil.findInstance(className, XmlParserImpl::new);
     }
 }

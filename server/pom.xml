@@ -41,12 +41,12 @@
 
     <build>
         <plugins>
-            <!-- Pass application.properties to the unit test, which defines server side implementations -->
+            <!-- Pass application-xml.properties to the unit test, which defines server side implementations -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
-                    <systemPropertiesFile>${basedir}/src/main/resources/application.properties</systemPropertiesFile>
+                    <systemPropertiesFile>${basedir}/src/main/resources/application-xml.properties</systemPropertiesFile>
                 </configuration>
             </plugin>
         </plugins>

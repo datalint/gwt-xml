@@ -23,14 +23,6 @@ public class XPathImpl
         return Lazy.instance;
     }
 
-    private static XPathImpl findInstance() {
-        try {
-            return (XPathImpl) Class.forName(System.getProperty(className)).newInstance();
-        } catch (Exception e) {
-            return new XPathImpl();
-        }
-    }
-
     protected XPathImpl() {
     }
 
@@ -143,6 +135,6 @@ public class XPathImpl
     }
 
     private static class Lazy {
-        private static final XPathImpl instance = findInstance();
+        private static final XPathImpl instance = SuperUtil.findInstance(className, XPathImpl::new);
     }
 }
