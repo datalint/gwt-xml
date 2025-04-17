@@ -1,7 +1,5 @@
-package gwt.xml.server;
+package gwt.xml.shared;
 
-import gwt.xml.shared.XPath;
-import gwt.xml.shared.XmlParser;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Element;

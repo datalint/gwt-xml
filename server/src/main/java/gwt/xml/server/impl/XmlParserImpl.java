@@ -5,10 +5,12 @@ import gwt.xml.server.parser.DocumentParser;
 import org.w3c.dom.Document;
 
 public class XmlParserImpl extends gwt.xml.shared.impl.XmlParserImpl {
+    @Override
     public Document createDocument() {
         return new DocumentImpl();
     }
 
+    @Override
     public Document parse(String contents) throws Exception {
         Document document = new DocumentImpl();
 

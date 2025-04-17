@@ -121,7 +121,7 @@
 
             <dependency>
                 <groupId>${xml.groupId}</groupId>
-                <artifactId>xml-shared</artifactId>
+                <artifactId>xml-server</artifactId>
                 <version>${xml.version}</version>
                 <type>test-jar</type>
                 <scope>test</scope>
