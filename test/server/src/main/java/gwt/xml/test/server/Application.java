@@ -13,7 +13,7 @@ import java.io.File;
 import java.util.Objects;
 
 @SpringBootApplication
-@ServletComponentScan(basePackages = {"gwt.xml.test"})
+@ServletComponentScan(basePackages = {"gwt.xml.test.server"})
 public class Application extends SpringBootServletInitializer {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -25,18 +25,19 @@ public class Application extends SpringBootServletInitializer {
     }
 
     /**
-     * You may delete this inner class if you do not use RPC, otherwise it is better to keep it for development.
+     * This inner class is relevant for RPC. If you're not using RPC, you can delete it. Otherwise, keeping it can be
+     * beneficial during development.
      */
     @Component
     public static class EmbeddedServletContainerConfig implements WebServerFactoryCustomizer<TomcatServletWebServerFactory> {
         @Override
         public void customize(TomcatServletWebServerFactory factory) {
             /*
-              You have to set a document root here, otherwise RemoteServiceServlet will fail to find the
-              corresponding serializationPolicyFilePath on a temporary web server started by spring boot application:
-              servlet.getServletContext().getResourceAsStream(serializationPolicyFilePath) returns null.
-              This has impact that java.io.Serializable can be no more used in RPC, only IsSerializable works.
-              */
+             A document root configuration is necessary. Without it, the RemoteServiceServlet cannot resolve the
+             serializationPolicyFilePath on the embedded Spring Boot web server. As a result, the call to
+             servlet.getServletContext().getResourceAsStream(serializationPolicyFilePath) returns null. This limitation
+             means that only IsSerializable is viable for RPC serialization; java.io.Serializable will not work.
+             */
             factory.setDocumentRoot(new File(Objects.requireNonNull(getClass().getResource("/")).getFile(),
                     "public"));
         }
