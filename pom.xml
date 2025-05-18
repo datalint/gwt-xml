@@ -21,7 +21,7 @@
         <spring-boot.version>3.4.0</spring-boot.version>
         <guava.version>33.3.1-jre</guava.version>
         <elemental2.version>1.2.3</elemental2.version>
-        <domino-ui.version>2.0.3</domino-ui.version>
+        <domino-ui.version>2.0.4</domino-ui.version>
         <saxon-he.version>12.5</saxon-he.version>
         <playwright.version>1.49.0</playwright.version>
 
