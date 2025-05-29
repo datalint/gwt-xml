@@ -233,7 +233,7 @@ public class DocumentImpl extends NodeImpl implements Document {
 
     @Override
     public Attr createAttribute(String name) {
-        throw createUoException("createAttribute");
+        return new AttrImpl(this, name, EMPTY);
     }
 
     @Override

@@ -16,9 +16,9 @@ import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class XmlTest implements IDomTest {
+class XmlTest implements IDomTest {
     @Test
-    public void testAll() throws Exception {
+    void testAll() throws Exception {
         String xml = Files.readString(Paths.get("src/test/resources/test.xml"));
 
         Document oldDocument = DocumentBuilderFactory.newDefaultInstance().newDocumentBuilder()
@@ -100,7 +100,7 @@ public class XmlTest implements IDomTest {
     }
 
     @Test
-    public void testDetermineLevel() {
+    void testDetermineLevel() {
         Document document = XmlParser.parse("<root><a name='1_1'><a name='2_1'></a><a name='2_2'><a name='3_1'>" +
                 "</a></a><a name='2_3'></a></a><a name='1_2'></a><a name='1_3'></a></root>");
 
@@ -109,7 +109,7 @@ public class XmlTest implements IDomTest {
     }
 
     @Test
-    public void testCompareDocumentPosition() {
+    void testCompareDocumentPosition() {
         Document document = XmlParser.parse("<root><a name='1_1'><a name='2_1'></a><a name='2_2'><a name='3_1'>" +
                 "</a></a><a name='2_3'></a></a><a name='1_2'></a><a name='1_3'></a></root>");
 
@@ -132,7 +132,7 @@ public class XmlTest implements IDomTest {
     }
 
     @Test
-    public void testGetElementById() {
+    void testGetElementById() {
         String xml = "<root><a id='a1' name='na1'><b id='b1' name='nb1'/></a></root>";
 
         Document document = XmlParser.parse(xml);
@@ -174,7 +174,7 @@ public class XmlTest implements IDomTest {
     }
 
     @Test
-    public void testTextContent() {
+    void testTextContent() {
         String xml = "<div id=\"divA\">This is <span>some</span> text!</div>";
         Element element = XmlParser.parse(xml).getDocumentElement();
         assertEquals(xml, element.toString());
@@ -187,7 +187,7 @@ public class XmlTest implements IDomTest {
     }
 
     @Test
-    public void testIsEqualNode() {
+    void testIsEqualNode() {
         String xml = "<div id='divA'>This is <span>some</span> text!</div>";
         Document document = XmlParser.parse(xml);
         Element element = document.getDocumentElement();
@@ -234,7 +234,7 @@ public class XmlTest implements IDomTest {
     }
 
     @Test
-    public void testNamedNodeMapImpl() {
+    void testNamedNodeMapImpl() {
         String xml = "<div id='divA' name=''/>";
         Element element = XmlParser.parse(xml).getDocumentElement();
         NamedNodeMap namedNodeMap = element.getAttributes();
@@ -256,7 +256,7 @@ public class XmlTest implements IDomTest {
     }
 
     @Test
-    public void testImportNode() {
+    void testImportNode() {
         String xml = "<a id='a1'><b name='b1'><c name='c1'/></b></a>";
         Document document1 = XmlParser.parse(xml);
         Document document2 = XmlParser.parse(xml);
@@ -277,5 +277,29 @@ public class XmlTest implements IDomTest {
 
         assertEquals("<a id=\"a1\"><b name=\"b1\"><c name=\"c1\"/></b><b name=\"b1\"><c name=\"c1\"/></b></a>",
                 document3.toString());
+    }
+
+    @Test
+    void testAttributeNode() {
+        Element documentElement = XmlParser.parse("<a name='1'/>").getDocumentElement();
+        assertEquals("1", documentElement.getAttribute("name"));
+
+        documentElement.getAttributeNode("name").setNodeValue("2");
+        assertEquals("2", documentElement.getAttribute("name"));
+
+        Attr id = documentElement.getOwnerDocument().createAttribute("id");
+        assertNull(documentElement.setAttributeNode(id));
+        assertEquals("", documentElement.getAttribute("id"));
+
+        Attr name = documentElement.getOwnerDocument().createAttribute("name");
+        name.setValue("3");
+        Attr oldName = documentElement.setAttributeNode(name);
+        assertEquals("2", oldName.getNodeValue());
+        assertEquals("3", documentElement.getAttribute("name"));
+
+        assertNotNull(documentElement.removeAttributeNode(id));
+        assertNotNull(documentElement.removeAttributeNode(name));
+
+        assertFalse(documentElement.hasAttributes());
     }
 }

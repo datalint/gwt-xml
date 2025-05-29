@@ -43,10 +43,10 @@ public class XmlParser {
     }
 
     /**
-     * This method parses a new document from the supplied string.
+     * Parses a new XML {@link Document} from the supplied string.
      *
-     * @param contents the String to be parsed into a <code>Document</code>
-     * @return the newly created <code>Document</code> or null if the parse fails.
+     * @param contents the {@code String} to be parsed into a {@code Document}.
+     * @return the newly created {@code Document}, or {@code null} if the parse fails.
      */
     public static Document parse(String contents) {
         return parse(contents, null);

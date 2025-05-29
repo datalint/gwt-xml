@@ -27,7 +27,7 @@ public class NamedNodeMapImpl implements NamedNodeMap, ICommon {
     }
 
     protected Attr createAttributeNode(String name, String value) {
-        return new AttrImpl(owner.getOwnerDocument(), name, value);
+        return new AttrImpl(owner, name, value);
     }
 
     @Override

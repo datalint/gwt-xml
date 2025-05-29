@@ -146,7 +146,7 @@ public class ElementImpl extends ParentNode implements Element {
             String value = attributes.get(name);
 
             if (value != null)
-                new AttrImpl(this, name, value);
+                return new AttrImpl(this, name, value);
         }
 
         return null;
@@ -223,12 +223,18 @@ public class ElementImpl extends ParentNode implements Element {
 
     @Override
     public Attr setAttributeNode(Attr newAttr) {
-        throw createUoException("setAttributeNode");
+        Attr attributeNode = getAttributeNode(newAttr.getName());
+
+        setAttribute(newAttr.getName(), newAttr.getValue());
+
+        return attributeNode;
     }
 
     @Override
     public Attr removeAttributeNode(Attr oldAttr) {
-        throw createUoException("removeAttributeNode");
+        removeAttribute(oldAttr.getName());
+
+        return oldAttr;
     }
 
     @Override

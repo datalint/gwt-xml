@@ -1,5 +1,6 @@
 package gwt.xml.server.parser;
 
+import gwt.xml.shared.ParserOption;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.Attributes;
@@ -12,11 +13,17 @@ public class DocumentSaxHandler extends DefaultHandler {
     protected final Document document;
     protected final Deque<Element> dequeElement = new ArrayDeque<>();
     protected final StringBuilder textBuilder = new StringBuilder();
+    protected final int options;
 
     protected Element rootElement;
 
     public DocumentSaxHandler(Document document) {
+        this(document, 0);
+    }
+
+    public DocumentSaxHandler(Document document, int options) {
         this.document = document;
+        this.options = options;
     }
 
     @Override
@@ -53,8 +60,11 @@ public class DocumentSaxHandler extends DefaultHandler {
     }
 
     protected void appendTextNode(Element last) {
-        if (textBuilder.length() > 0) {
-            last.appendChild(document.createTextNode(textBuilder.toString()));
+        if (!textBuilder.isEmpty()) {
+            String text = textBuilder.toString();
+
+            if (!ParserOption.ignoreWhitespace.hasFlag(options) || !text.trim().isEmpty())
+                last.appendChild(document.createTextNode(text));
 
             textBuilder.setLength(0);
         }

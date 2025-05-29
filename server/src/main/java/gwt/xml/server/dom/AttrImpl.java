@@ -55,6 +55,9 @@ public class AttrImpl extends NodeImpl implements Attr {
     @Override
     public void setNodeValue(String nodeValue) {
         value = nodeValue;
+
+        if (owner instanceof Element)
+            ((Element) owner).setAttribute(name, value);
     }
 
     @Override
@@ -73,8 +76,14 @@ public class AttrImpl extends NodeImpl implements Attr {
     }
 
     @Override
+    public Node getParentNode() {
+        // An attribute node does not have a parent node; instead, it has an owner element.
+        return null;
+    }
+
+    @Override
     public Element getOwnerElement() {
-        throw createUoException("getOwnerElement");
+        return owner instanceof Element ? (Element) owner : null;
     }
 
     @Override

@@ -29,9 +29,13 @@ public class DocumentParser {
     }
 
     public static Document parse(String xml) throws Exception {
+        return parse(xml, 0);
+    }
+
+    public static Document parse(String xml, int options) throws Exception {
         Document document = new DocumentImpl();
 
-        document.appendChild(parse(document, xml));
+        document.appendChild(parse(document, xml, options));
 
         return document;
     }
@@ -41,8 +45,12 @@ public class DocumentParser {
     }
 
     public static Document parseSilent(String xml) {
+        return parseSilent(xml, 0);
+    }
+
+    public static Document parseSilent(String xml, int options) {
         try {
-            return parse(xml);
+            return parse(xml, options);
         } catch (Exception e) {
             return null;
         }
@@ -57,14 +65,14 @@ public class DocumentParser {
     }
 
     public static <T extends DefaultHandler> T parse(String xml, T handler) throws Exception {
-        SAXParser sAXParser = ParserFactory.instance.borrowObject();
+        SAXParser saxParser = ParserFactory.instance.borrowObject();
 
         try {
-            sAXParser.parse(new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8)), handler);
+            saxParser.parse(new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8)), handler);
 
             return handler;
         } finally {
-            ParserFactory.instance.returnObject(sAXParser);
+            ParserFactory.instance.returnObject(saxParser);
         }
     }
 
@@ -77,7 +85,11 @@ public class DocumentParser {
     }
 
     public static Element parse(Document owner, String xml) throws Exception {
-        return parse(xml, new DocumentSaxHandler(owner)).getRootElement();
+        return parse(owner, xml, 0);
+    }
+
+    public static Element parse(Document owner, String xml, int options) throws Exception {
+        return parse(xml, new DocumentSaxHandler(owner, options)).getRootElement();
     }
 
     public static Element parseSilent(Document owner, String xml) {
