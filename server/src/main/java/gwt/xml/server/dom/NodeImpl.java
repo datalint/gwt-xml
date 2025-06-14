@@ -62,16 +62,16 @@ public abstract class NodeImpl implements Node, ICommon {
 
     @Override
     public Node getPreviousSibling() {
-        if (owner instanceof ElementImpl)
-            return ((ElementImpl) owner).getPreviousSibling(this);
+        if (owner instanceof ParentNode)
+            return ((ParentNode) owner).getPreviousSibling(this);
 
         return null;
     }
 
     @Override
     public Node getNextSibling() {
-        if (owner instanceof ElementImpl)
-            return ((ElementImpl) owner).getNextSibling(this);
+        if (owner instanceof ParentNode)
+            return ((ParentNode) owner).getNextSibling(this);
 
         return null;
     }
@@ -165,10 +165,10 @@ public abstract class NodeImpl implements Node, ICommon {
     @Override
     public boolean isEqualNode(Node arg) {
         return equals(arg) || arg != null && getNodeType() == arg.getNodeType()
-                              && Objects.equals(getNodeName(), arg.getNodeName())
-                              && Objects.equals(getNodeValue(), arg.getNodeValue())
-                              && Objects.equals(getAttributes(), arg.getAttributes())
-                              && getChildNodes().equals(arg.getChildNodes());
+                && Objects.equals(getNodeName(), arg.getNodeName())
+                && Objects.equals(getNodeValue(), arg.getNodeValue())
+                && Objects.equals(getAttributes(), arg.getAttributes())
+                && getChildNodes().equals(arg.getChildNodes());
     }
 
     @Override
@@ -178,9 +178,7 @@ public abstract class NodeImpl implements Node, ICommon {
 
     @Override
     public short compareDocumentPosition(Node other) {
-        if (equals(other))
-            return 0;
-        else if (equals(other.getOwnerDocument()))
+        if (equals(other) || equals(other.getOwnerDocument()))
             return DOCUMENT_POSITION_FOLLOWING + DOCUMENT_POSITION_CONTAINED_BY;
         else if (getOwnerDocument().equals(other))
             return DOCUMENT_POSITION_PRECEDING + DOCUMENT_POSITION_CONTAINS;

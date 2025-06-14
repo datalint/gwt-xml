@@ -117,8 +117,8 @@ class XmlTest implements IDomTest {
         Element a1_1 = XPath.evaluateNode(document, "a[1]/a[1]");
         Element a1_2 = XPath.evaluateNode(document, "a[1]/a[2]");
 
-        assertEquals(0, a1.compareDocumentPosition(XPath.evaluateNode(document, "a[1]")));
-        assertEquals(0, a1_1.compareDocumentPosition(a1_1));
+        assertEquals(20, a1.compareDocumentPosition(XPath.evaluateNode(document, "a[1]")));
+        assertEquals(20, a1_1.compareDocumentPosition(a1_1));
         assertEquals(20, a1.compareDocumentPosition(a1_1));
         assertEquals(10, a1_1.compareDocumentPosition(a1));
         assertEquals(4, a1_1.compareDocumentPosition(a1_2));

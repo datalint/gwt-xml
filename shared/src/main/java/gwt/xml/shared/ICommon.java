@@ -7,6 +7,7 @@ import org.w3c.dom.NodeList;
 
 import java.util.AbstractList;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public interface ICommon {
@@ -125,12 +126,16 @@ public interface ICommon {
         return null;
     }
 
-    default <T extends Node> T append(T node, Node... children) {
+    default <T extends Node, C extends Node> T append(T node, Iterable<C> children) {
         for (Node child : children) {
             node.appendChild(child);
         }
 
         return node;
+    }
+
+    default <T extends Node> T append(T node, Node... children) {
+        return append(node, Arrays.asList(children));
     }
 
     default String simpleName(Class<?> clazz) {
@@ -176,6 +181,7 @@ public interface ICommon {
         return coalesce(source, EMPTY);
     }
 
+    @SuppressWarnings("unchecked")
     default <T> T coalesce(T... values) {
         for (T value : values) {
             if (value != null)

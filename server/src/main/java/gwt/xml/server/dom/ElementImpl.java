@@ -182,6 +182,12 @@ public class ElementImpl extends ParentNode implements Element {
             for (Node child : children) {
                 clone.children.add(child.cloneNode(true));
             }
+
+            // When a node is cloned, its children must also recognize the cloned node as their owner (parent).
+            // Failing to do so will cause issues with XPath queries like .//*.
+            for (Node child : clone.children) {
+                NodeImpl.setOwner(child, clone);
+            }
         }
 
         return clone;

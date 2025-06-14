@@ -1,19 +1,18 @@
 package gwt.xml.shared;
 
 import org.junit.jupiter.api.Test;
-import org.w3c.dom.Attr;
-import org.w3c.dom.Element;
-import org.w3c.dom.Text;
+import org.w3c.dom.*;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static gwt.xml.shared.XPath.*;
 import static gwt.xml.shared.XmlUtil.getFirstElementChild;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class XPathTest {
+class XPathTest {
     @Test
-    public void testEvaluate() {
+    void testEvaluate() {
         String xml = "<web><domain id='1'/><domain id='2'>domain <child/> 2</domain></web>";
         Element element = XmlParser.parse(xml).getDocumentElement();
 
@@ -44,5 +43,31 @@ public class XPathTest {
         element = XmlParser.parse(xml).getDocumentElement();
         assertEquals(getFirstElementChild(element), evaluateElement(element));
         assertEquals(evaluateNode(element, "text()"), element.getFirstChild());
+    }
+
+    @Test
+    void testImportNode() {
+        Document document = XmlParser.createDocument();
+
+        Node root = document.createElement("root");
+
+        Node parent = document.createElement("parent");
+        root.appendChild(parent);
+
+        Node child = document.createElement("child");
+        parent.appendChild(child);
+
+        Node childTwo = document.createElement("child");
+        parent.appendChild(childTwo);
+
+        Node parentTwo = document.createElement("parent");
+        root.appendChild(parentTwo);
+
+        Document newDocument = XmlParser.createDocument();
+        root = newDocument.importNode(root, true);
+
+        List<Element> descendants = evaluateNodes((Element) root, ".//*");
+        parent = root.getFirstChild();
+        assertEquals(List.of(parent, parent.getFirstChild(), parent.getLastChild(), root.getLastChild()), descendants);
     }
 }

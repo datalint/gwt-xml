@@ -8,6 +8,8 @@ import org.w3c.dom.*;
 import java.util.*;
 
 import static gwt.xml.shared.XPathBuilder.*;
+import static org.w3c.dom.Node.DOCUMENT_POSITION_CONTAINED_BY;
+import static org.w3c.dom.Node.DOCUMENT_POSITION_CONTAINS;
 
 public class XmlUtil implements ICommon {
     private static final String ROOT_WRAPPER = "root";
@@ -71,6 +73,21 @@ public class XmlUtil implements ICommon {
         } while ((other = other.getParentNode()) instanceof Element);
 
         return null;
+    }
+
+    public static short determineRelation(Node referenceNode, Node other) {
+        if (referenceNode.equals(other))
+            return DOCUMENT_POSITION_CONTAINED_BY;
+
+        Element closestCommonAncestor = getClosestCommonAncestor(referenceNode, other);
+        if (closestCommonAncestor != null) {
+            if (ancestorSet(referenceNode, true, closestCommonAncestor, true).contains(other))
+                return DOCUMENT_POSITION_CONTAINS;
+            else if (ancestorSet(other, true, closestCommonAncestor, true).contains(referenceNode))
+                return DOCUMENT_POSITION_CONTAINED_BY;
+        }
+
+        return 0;
     }
 
     public static void appendAncestors(Collection<Node> ancestors, Node descendant, boolean inclusive) {
