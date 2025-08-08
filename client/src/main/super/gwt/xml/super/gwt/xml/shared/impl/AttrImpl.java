@@ -50,4 +50,11 @@ class AttrImpl extends NodeImpl implements Attr {
     public String getValue() {
         return XmlParserImpl.getValue(this.getJsObject());
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void setValue(String value) {
+        setNodeValue(value);
+    }
 }

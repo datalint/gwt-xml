@@ -51,4 +51,11 @@ public interface Attr extends Node {
      * @return the value of this <code>Attr</code>
      */
     String getValue();
+
+    /**
+     * This method sets the value.
+     *
+     * @param value the value of this <code>Attr</code>
+     */
+    void setValue(String value);
 }
