@@ -148,4 +148,33 @@ class XmlUtilTest {
         assertEquals(DOCUMENT_POSITION_CONTAINS, XmlUtil.determineRelation(b1.getFirstChild(), b1));
         assertEquals(DOCUMENT_POSITION_CONTAINS, XmlUtil.determineRelation(b1.getFirstChild(), b1.getParentNode()));
     }
+
+    @Test
+    void testIsFunctionalEquals() {
+        Document documentOne = XmlParser.createDocument();
+        Element aOne = documentOne.createElement("a");
+        Element b = documentOne.createElement("b");
+        b.setAttribute("name", "b1");
+        aOne.appendChild(b);
+        b = documentOne.createElement("b");
+        b.setAttribute("name", "b2");
+        aOne.appendChild(b);
+        documentOne.appendChild(aOne);
+
+        Document documentTwo = XmlParser.createDocument();
+        Element aTwo = documentTwo.createElement("a");
+        b = documentOne.createElement("b");
+        b.setAttribute("name", "b2");
+        aTwo.appendChild(b);
+        documentTwo.appendChild(aTwo);
+
+        b = documentOne.createElement("b");
+        b.setAttribute("name", "b2");
+        aTwo.appendChild(b);
+
+        assertFalse(XmlUtil.isFunctionalEquals(aOne, aTwo));
+        b.setAttribute("name", "b1");
+        assertFalse(aOne.isEqualNode(aTwo));
+        assertTrue(XmlUtil.isFunctionalEquals(aOne, aTwo));
+    }
 }

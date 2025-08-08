@@ -416,6 +416,53 @@ public class XmlUtil implements ICommon {
         return XmlUtilImpl.getInstance().equals(elementOne, elementTwo);
     }
 
+    /**
+     * Tests whether two elements are functionally equal, meaning the order of their child elements doesn't matter.
+     * Two elements are considered functionally equal if they have the same number of child nodes, identical attributes
+     * and text nodes, and functionally equivalent element nodes.
+     *
+     * @param elementOne The first element to compare functional equality with.
+     * @param elementTwo The second element to compare functional equality with.
+     * @return Returns <code>true</code> if the elements are functional equal, <code>false</code> otherwise.
+     */
+    public static boolean isFunctionalEquals(Element elementOne, Element elementTwo) {
+        if (elementOne == null && elementTwo == null)
+            return true;
+        else if (elementOne == null || elementTwo == null || !Objects.equals(elementOne.getNodeName(),
+                elementTwo.getNodeName()) || !Objects.equals(elementOne.getAttributes(), elementTwo.getAttributes()))
+            return false;
+
+        NodeList childNodesOne = elementOne.getChildNodes();
+        NodeList childNodesTwo = elementTwo.getChildNodes();
+
+        int lengthOne = childNodesOne.getLength();
+        int lengthTwo = childNodesTwo.getLength();
+
+        if (lengthOne != lengthTwo)
+            return false;
+
+        Set<Integer> matchedNodes = new HashSet<>(lengthTwo);
+        outer:
+        for (int i = 0; i < lengthOne; i++) {
+            Node nodeOne = childNodesOne.item(i);
+            for (int j = 0; j < lengthTwo; j++) {
+                if (matchedNodes.contains(j))
+                    continue;
+
+                Node nodeTwo = childNodesTwo.item(j);
+                if (nodeOne instanceof Element && nodeTwo instanceof Element && isFunctionalEquals((Element) nodeOne,
+                        (Element) nodeTwo) || nodeOne.isEqualNode(nodeTwo)) {
+                    matchedNodes.add(j);
+                    continue outer;
+                }
+            }
+
+            return false;
+        }
+
+        return true;
+    }
+
     public static int getHashCode(Element element) {
         return XmlUtilImpl.getInstance().getHashCode(element);
     }
