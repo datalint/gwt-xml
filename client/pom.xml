@@ -13,15 +13,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.gwtproject</groupId>
-            <artifactId>gwt-user</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.gwtproject</groupId>
-            <artifactId>gwt-dev</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>${xml.groupId}</groupId>
             <artifactId>xml-shared</artifactId>
         </dependency>
@@ -29,6 +20,15 @@
             <groupId>${xml.groupId}</groupId>
             <artifactId>xml-shared</artifactId>
             <classifier>sources</classifier>
+        </dependency>
+
+        <dependency>
+            <groupId>org.gwtproject</groupId>
+            <artifactId>gwt-user</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.gwtproject</groupId>
+            <artifactId>gwt-dev</artifactId>
         </dependency>
     </dependencies>
 
