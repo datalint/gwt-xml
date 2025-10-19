@@ -25,6 +25,9 @@
         <saxon-he.version>12.5</saxon-he.version>
         <playwright.version>1.49.0</playwright.version>
 
+        <!-- Spring Boot dependency properties — update them whenever you upgrade the Spring Boot version. -->
+        <mockito.version>5.14.2</mockito.version>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
