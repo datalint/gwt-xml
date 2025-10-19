@@ -22,7 +22,7 @@ import com.google.common.escape.Escapers;
  * {@code Escaper} instances suitable for strings to be included in XML attribute values and
  * elements' text contents. When possible, avoid manual escaping by using templating systems and
  * high-level APIs that provide autoescaping. For example, consider <a
- * href="http://www.xom.nu/">XOM</a> or <a href="http://www.jdom.org/">JDOM</a>.
+ * href="http://www.xom.nu/">XOM</a>.
  *
  * <p><b>Note:</b> Currently the escapers provided by this class do not escape any characters
  * outside the ASCII character range. Unlike HTML escaping the XML escapers will not escape
@@ -38,7 +38,6 @@ import com.google.common.escape.Escapers;
  * @since 15.0
  */
 @GwtCompatible
-@ElementTypesAreNonnullByDefault
 public class XmlEscapers {
   private XmlEscapers() {}
 
@@ -94,11 +93,10 @@ public class XmlEscapers {
    * <p>This escaper does not treat surrogate pairs specially and does not perform Unicode
    * validation on its input.
    */
+  @SuppressWarnings("EscapedEntity") // We do mean for the user to see &#x9;" etc.
   public static Escaper xmlAttributeEscaper() {
     return XML_ATTRIBUTE_ESCAPER;
   }
-
-  private static final Escaper XML_ESCAPER;
   private static final Escaper XML_CONTENT_ESCAPER;
   private static final Escaper XML_ATTRIBUTE_ESCAPER;
 
@@ -133,7 +131,6 @@ public class XmlEscapers {
     builder.addEscape('>', "&gt;");
     XML_CONTENT_ESCAPER = builder.build();
     builder.addEscape('"', "&quot;");
-    XML_ESCAPER = builder.build();
     builder.addEscape('\t', "&#9;");
     builder.addEscape('\n', "&#10;");
     builder.addEscape('\r', "&#13;");

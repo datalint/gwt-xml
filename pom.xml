@@ -17,16 +17,16 @@
         <xml.groupId>com.datalint.gwt.xml</xml.groupId>
         <xml.version>1.0</xml.version>
 
-        <gwt.version>2.12.1</gwt.version>
-        <spring-boot.version>3.4.0</spring-boot.version>
-        <guava.version>33.3.1-jre</guava.version>
+        <gwt.version>2.12.2</gwt.version>
+        <spring-boot.version>3.5.3</spring-boot.version>
+        <guava.version>33.4.8-jre</guava.version>
         <elemental2.version>1.2.3</elemental2.version>
         <domino-ui.version>2.0.4</domino-ui.version>
-        <saxon-he.version>12.5</saxon-he.version>
-        <playwright.version>1.49.0</playwright.version>
+        <saxon-he.version>12.7</saxon-he.version>
+        <playwright.version>1.52.0</playwright.version>
 
         <!-- Spring Boot dependency properties — update them whenever you upgrade the Spring Boot version. -->
-        <mockito.version>5.14.2</mockito.version>
+        <mockito.version>5.17.0</mockito.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
