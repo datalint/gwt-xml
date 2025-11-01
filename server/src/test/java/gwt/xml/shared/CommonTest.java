@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CommonTest implements ICommon {
+class CommonTest implements ICommon {
     @Test
-    public void testAfterAndBefore() {
+    void testAfterAndBefore() {
         String source = "com.datalint.core";
 
         assertEquals("datalint.core", after(source, '.'));
@@ -20,5 +20,13 @@ public class CommonTest implements ICommon {
 
         assertEquals("com.datalint", beforeLast(source, '.'));
         assertEquals(source, beforeLast(source, ' '));
+    }
+
+    @Test
+    void testCommonS() {
+        String source = "com.datalint.core";
+        char c = '.';
+
+        assertEquals(before(source, c), CommonS.before(source, c));
     }
 }
