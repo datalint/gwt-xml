@@ -1,11 +1,11 @@
 package gwt.xml.test.client;
 
+import gwt.xml.shared.XPath;
 import gwt.xml.shared.XmlParser;
 import gwt.xml.shared.XmlUtil;
 import org.w3c.dom.Element;
 
-import static gwt.xml.client.AssertionsC.assertFalse;
-import static gwt.xml.client.AssertionsC.assertTrue;
+import static gwt.xml.client.AssertionsC.*;
 
 public class XmlUtilTestC {
     private static final XmlUtilTestC instance = new XmlUtilTestC();
@@ -57,6 +57,23 @@ public class XmlUtilTestC {
 
         XmlUtil.normalizeSpace(domains2);
         assertTrue(domains1.isEqualNode(domains2));
+
+
+        // Test scenario: Check XPath/DOM behavior after node removal, specifically text node adjacency/merging.
+        String xmlString = """
+                <a>
+                    <b/>
+                </a>
+                """;
+        Element xml = XmlParser.parse(xmlString).getDocumentElement();
+        assertEquals(3, xml.getChildNodes().getLength());
+
+        Element b = XPath.evaluateNode(xml, "b");
+        b.getParentNode().removeChild(b);
+        assertEquals(2, xml.getChildNodes().getLength());
+
+        XmlUtil.normalizeSpace(xml);
+        assertTrue(XmlParser.parse("<a/>").getDocumentElement().isEqualNode(xml));
     }
 
     @Deprecated

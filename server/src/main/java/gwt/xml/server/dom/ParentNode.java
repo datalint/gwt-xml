@@ -2,9 +2,11 @@ package gwt.xml.server.dom;
 
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 public abstract class ParentNode extends NodeImpl {
@@ -95,13 +97,41 @@ public abstract class ParentNode extends NodeImpl {
     }
 
     @Override
+    public void normalize() {
+        if (children == null)
+            return;
+
+        Text previousText = null;
+        Iterator<Node> iterator = children.iterator();
+        while (iterator.hasNext()) {
+            Node next = iterator.next();
+
+            if (next instanceof Text) {
+                String nodeValue = next.getNodeValue();
+                boolean isEmpty = nodeValue.isEmpty();
+                if (isEmpty || previousText != null) {
+                    if (!isEmpty)
+                        previousText.appendData(nodeValue);
+
+                    iterator.remove();
+                } else {
+                    previousText = (Text) next;
+                }
+            } else {
+                next.normalize();
+                previousText = null;
+            }
+        }
+    }
+
+    @Override
     public String getTextContent() {
         if (children == null)
             return EMPTY;
 
         StringBuilder sB = new StringBuilder();
-        for (int i = 0; i < children.size(); i++) {
-            String textContent = children.get(i).getTextContent();
+        for (Node child : children) {
+            String textContent = child.getTextContent();
 
             if (textContent != null)
                 sB.append(textContent);

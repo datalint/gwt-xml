@@ -69,9 +69,7 @@ public class NodeListImpl implements NodeList, ICommon {
         if (this == obj)
             return true;
 
-        if (obj instanceof NodeList) {
-            NodeList nodeList = (NodeList) obj;
-
+        if (obj instanceof NodeList nodeList) {
             int length = getLength();
             if (length == nodeList.getLength()) {
                 for (int i = 0; i < length; i++) {

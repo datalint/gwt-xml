@@ -50,6 +50,22 @@ class XmlUtilTest {
 
         XmlUtil.normalizeSpace(domains2);
         assertTrue(domains1.isEqualNode(domains2));
+
+        // Test scenario: Check XPath/DOM behavior after node removal, specifically text node adjacency/merging.
+        String xmlString = """
+                <a>
+                    <b/>
+                </a>
+                """;
+        Element xml = XmlParser.parse(xmlString).getDocumentElement();
+        assertEquals(3, xml.getChildNodes().getLength());
+
+        Element b = XPath.evaluateNode(xml, "b");
+        b.getParentNode().removeChild(b);
+        assertEquals(2, xml.getChildNodes().getLength());
+
+        XmlUtil.normalizeSpace(xml);
+        assertTrue(XmlParser.parse("<a/>").getDocumentElement().isEqualNode(xml));
     }
 
     @Test

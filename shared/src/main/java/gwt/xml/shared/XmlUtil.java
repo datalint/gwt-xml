@@ -37,6 +37,13 @@ public class XmlUtil implements ICommon {
     }
 
     public static void normalizeSpace(Element target) {
+        /*
+         * To avoid the XPath selection (e.g., //text()) incorrectly missing adjacent text nodes following a DOM
+         * modification (like node removal), you must explicitly call element.normalize() beforehand.
+         * This explicit normalization is not required in client-side JavaScript XPath implementations.
+         */
+        target.normalize();
+
         String xPath = selfDescendant(join(TEXT, predicate(equal(new NormalizeSpace(), quote(EMPTY))))).build();
         List<Node> nodes = XPath.evaluateNodes(target, xPath);
         for (Node node : nodes) {

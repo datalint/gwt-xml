@@ -199,6 +199,12 @@ public class DocumentImpl extends NodeImpl implements Document {
     }
 
     @Override
+    public void normalize() {
+        if (element != null)
+            element.normalize();
+    }
+
+    @Override
     public String getXmlEncoding() {
         return null;
     }
@@ -293,7 +299,7 @@ public class DocumentImpl extends NodeImpl implements Document {
 
     @Override
     public void normalizeDocument() {
-        throw createUoException("normalizeDocument");
+        normalize();
     }
 
     @Override

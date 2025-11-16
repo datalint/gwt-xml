@@ -215,13 +215,7 @@ public interface ICommon {
         return new ListWrapper(nodeList);
     }
 
-    class NodeListWrapper implements NodeList {
-        private final List<Node> nodes;
-
-        private NodeListWrapper(List<Node> nodes) {
-            this.nodes = nodes;
-        }
-
+    record NodeListWrapper(List<Node> nodes) implements NodeList {
         @Override
         public Node item(int index) {
             return nodes.get(index);
@@ -241,7 +235,7 @@ public interface ICommon {
 
         private ListWrapper(NodeList nodeList) {
             this.nodeList = nodeList;
-            length = nodeList.getLength();
+            length = nodeList == null ? 0 : nodeList.getLength();
         }
 
         @Override
