@@ -2,14 +2,15 @@ package gwt.xml.test.client;
 
 import gwt.xml.shared.XPath;
 import gwt.xml.shared.XmlParser;
-import org.w3c.dom.Attr;
-import org.w3c.dom.Element;
-import org.w3c.dom.Text;
+import org.w3c.dom.*;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static gwt.xml.client.AssertionsC.*;
 import static gwt.xml.shared.XPath.*;
+import static gwt.xml.shared.XPathBuilder.TEXT;
+import static gwt.xml.shared.XPathBuilder.selfDescendant;
 import static gwt.xml.shared.XmlUtil.getFirstElementChild;
 
 public class XPathTestC {
@@ -22,7 +23,13 @@ public class XPathTestC {
     private XPathTestC() {
     }
 
-    public void testEvaluate() {
+    public void test() {
+        testEvaluate();
+        testImportNode();
+        testTextNode();
+    }
+
+    void testEvaluate() {
         String xml = "<web><domain id='1'/><domain id='2'>domain <child/> 2</domain></web>";
         Element element = XmlParser.parse(xml).getDocumentElement();
 
@@ -53,5 +60,54 @@ public class XPathTestC {
         element = XmlParser.parse(xml).getDocumentElement();
         assertEquals(getFirstElementChild(element), evaluateElement(element));
         assertEquals(evaluateNode(element, "text()"), element.getFirstChild());
+    }
+
+    void testImportNode() {
+        Document document = XmlParser.createDocument();
+
+        Node root = document.createElement("root");
+
+        Node parent = document.createElement("parent");
+        root.appendChild(parent);
+
+        Node child = document.createElement("child");
+        parent.appendChild(child);
+
+        Node childTwo = document.createElement("child");
+        parent.appendChild(childTwo);
+
+        Node parentTwo = document.createElement("parent");
+        root.appendChild(parentTwo);
+
+        Document newDocument = XmlParser.createDocument();
+        root = newDocument.importNode(root, true);
+
+        List<Element> descendants = evaluateNodes((Element) root, ".//*");
+        parent = root.getFirstChild();
+        assertEquals(List.of(parent, parent.getFirstChild(), parent.getLastChild(), root.getLastChild()), descendants);
+    }
+
+    void testTextNode() {
+        Document document = XmlParser.parse("""
+                <a><b>B</b><c>Old C</c></a>
+                """);
+
+        List<Text> textNodes = XPath.evaluateNodes(document, selfDescendant(TEXT).build());
+        assertEquals(2, textNodes.size());
+        Text textNode = textNodes.get(0);
+        assertEquals("B", textNode.getNodeValue());
+        assertEquals("B", textNode.getData());
+        assertEquals("B", textNode.getTextContent());
+
+        String oldC = "Old C";
+        String newC = "New C";
+        textNode = textNodes.get(1);
+        assertEquals(oldC, textNode.getData());
+        textNode.setData(newC);
+        assertEquals(newC, textNode.getData());
+        textNode.setNodeValue(oldC);
+        assertEquals(oldC, textNode.getNodeValue());
+        textNode.setTextContent(newC);
+        assertEquals(newC, textNode.getTextContent());
     }
 }

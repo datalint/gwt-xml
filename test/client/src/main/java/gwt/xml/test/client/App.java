@@ -36,7 +36,7 @@ public class App implements EntryPoint {
         XmlUtilTestC.getInstance().testEqualsTrue();
         XmlUtilTestC.getInstance().testEqualsFalse();
         XPathBuilderTestC.getInstance().testBuild();
-        XPathTestC.getInstance().testEvaluate();
+        XPathTestC.getInstance().test();
         XPathUtilTestC.getInstance().testUtil();
     }
 

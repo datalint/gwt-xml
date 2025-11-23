@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static gwt.xml.shared.XPath.*;
+import static gwt.xml.shared.XPathBuilder.TEXT;
+import static gwt.xml.shared.XPathBuilder.selfDescendant;
 import static gwt.xml.shared.XmlUtil.getFirstElementChild;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -69,5 +71,30 @@ class XPathTest {
         List<Element> descendants = evaluateNodes((Element) root, ".//*");
         parent = root.getFirstChild();
         assertEquals(List.of(parent, parent.getFirstChild(), parent.getLastChild(), root.getLastChild()), descendants);
+    }
+
+    @Test
+    void testTextNode() {
+        Document document = XmlParser.parse("""
+                <a><b>B</b><c>Old C</c></a>
+                """);
+
+        List<Text> textNodes = XPath.evaluateNodes(document, selfDescendant(TEXT).build());
+        assertEquals(2, textNodes.size());
+        Text textNode = textNodes.get(0);
+        assertEquals("B", textNode.getNodeValue());
+        assertEquals("B", textNode.getData());
+        assertEquals("B", textNode.getTextContent());
+
+        String oldC = "Old C";
+        String newC = "New C";
+        textNode = textNodes.get(1);
+        assertEquals(oldC, textNode.getData());
+        textNode.setData(newC);
+        assertEquals(newC, textNode.getData());
+        textNode.setNodeValue(oldC);
+        assertEquals(oldC, textNode.getNodeValue());
+        textNode.setTextContent(newC);
+        assertEquals(newC, textNode.getTextContent());
     }
 }
