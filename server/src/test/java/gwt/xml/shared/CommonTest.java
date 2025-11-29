@@ -27,6 +27,6 @@ class CommonTest implements ICommon {
         String source = "com.datalint.core";
         char c = '.';
 
-        assertEquals(before(source, c), Common.instance.before(source, c));
+        assertEquals(before(source, c), ICommon.getInstance().before(source, c));
     }
 }
