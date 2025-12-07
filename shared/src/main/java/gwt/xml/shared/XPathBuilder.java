@@ -17,6 +17,7 @@ public class XPathBuilder implements ICommon {
     public static final String NODE = "node()";
 
     public static final IExpression LAST = new Lit("last()");
+    public static final IExpression NAME = new Name();
     public static final IExpression POSITION = new Lit("position()");
     public static final IExpression TEXT = new Lit("text()");
 
@@ -247,7 +248,7 @@ public class XPathBuilder implements ICommon {
     }
 
     public static IExpression equalTagName(String tagName) {
-        return equal(name(null), quote(tagName));
+        return equal(NAME, quote(tagName));
     }
 
     public static IExpression[] equalTagNames(String... tagNames) {
@@ -349,10 +350,6 @@ public class XPathBuilder implements ICommon {
 
     public static IExpression minus(IExpression first, IExpression second) {
         return Operator.minus(first, second);
-    }
-
-    public static IExpression name(IExpression expression) {
-        return new Name(expression);
     }
 
     public static IExpression not(IExpression expression) {

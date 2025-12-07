@@ -4,6 +4,10 @@ import gwt.xml.shared.expression.IExpression;
 import gwt.xml.shared.expression.UnaryExpression;
 
 public class Name extends UnaryExpression {
+    public Name() {
+        super(null);
+    }
+
     public Name(IExpression expression) {
         super(expression);
     }
