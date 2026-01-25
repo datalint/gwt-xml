@@ -19,7 +19,8 @@
 
         <gwt.version>2.12.2</gwt.version>
         <spring-boot.version>4.0.2</spring-boot.version>
-        <guava.version>33.5.0-jre</guava.version>
+        <!-- 33.5.0-jre issue: https://github.com/google/guava/issues/8168 -->
+        <guava.version>33.4.8-jre</guava.version>
         <elemental2.version>1.2.3</elemental2.version>
         <domino-ui.version>2.1.0</domino-ui.version>
         <saxon-he.version>12.9</saxon-he.version>
