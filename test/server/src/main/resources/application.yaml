@@ -1,8 +1,4 @@
 server:
-  error:
-    whitelabel:
-      enabled: false
-    path: /error
   forward-headers-strategy: framework
   port: 8080
 
@@ -17,8 +13,6 @@ spring:
 
   jackson:
     date-format: yyyy-MM-dd'T'HH:mm:ss.SSSZ
-    serialization:
-      write_dates_as_timestamps: false
 
   output:
     ansi:
@@ -32,6 +26,10 @@ spring:
   web:
     resources:
       static-locations: classpath:/public/
+    error:
+      whitelabel:
+        enabled: false
+      path: /error
 
 debug: false
 
