@@ -265,6 +265,6 @@ public interface ICommon {
     }
 
     class Lazy implements ICommon {
-        private static ICommon instance = new Lazy();
+        private static final ICommon instance = new Lazy();
     }
 }
