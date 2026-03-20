@@ -3,6 +3,7 @@ package gwt.xml.shared;
 import com.google.common.collect.Sets;
 import gwt.xml.shared.impl.XmlUtilImpl;
 import gwt.xml.shared.xpath.NormalizeSpace;
+import org.jspecify.annotations.Nullable;
 import org.w3c.dom.*;
 
 import java.util.*;
@@ -101,8 +102,8 @@ public class XmlUtil implements ICommon {
         appendAncestors(ancestors, descendant, inclusive, null, false);
     }
 
-    public static void appendAncestors(Collection<Node> ancestors, Node descendant, boolean inclusiveD, Node ancestor,
-                                       boolean inclusiveA) {
+    public static void appendAncestors(Collection<Node> ancestors, Node descendant, boolean inclusiveD,
+                                       @Nullable Node ancestor, boolean inclusiveA) {
         if (descendant.equals(ancestor)) {
             if (inclusiveD || inclusiveA)
                 ancestors.add(descendant);
@@ -232,7 +233,7 @@ public class XmlUtil implements ICommon {
         Node textNode = XPath.evaluateNode(element, XPathBuilder.TEXT.build());
 
         if (textNode == null) {
-            if (text != null && text.length() > 0) {
+            if (text != null && !text.isEmpty()) {
                 appendText(element, text);
 
                 return true;
@@ -538,7 +539,7 @@ public class XmlUtil implements ICommon {
             dest.setAttribute(name, srcAttr.getNodeValue());
         }
 
-        if (remove && destAttrsMap.size() > 0) {
+        if (remove && !destAttrsMap.isEmpty()) {
             for (String key : destAttrsMap.keySet()) {
                 dest.removeAttribute(key);
             }
@@ -579,7 +580,7 @@ public class XmlUtil implements ICommon {
     public static void setText(Element element, String text) {
         List<Text> textNodes = XPath.evaluateNodes(element, "text()");
 
-        if (textNodes.size() == 0) {
+        if (textNodes.isEmpty()) {
             appendText(element, text);
 
             return;
@@ -643,7 +644,7 @@ public class XmlUtil implements ICommon {
 
         sB.append('>');
 
-        if (!isEven && ((CharSequence) childAndOrAttributes[0]).length() > 0)
+        if (!isEven && !((CharSequence) childAndOrAttributes[0]).isEmpty())
             sB.append((CharSequence) childAndOrAttributes[0]);
 
         return appendEndTag(sB, tagName);
