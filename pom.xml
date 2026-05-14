@@ -18,13 +18,12 @@
         <xml.version>1.0</xml.version>
 
         <gwt.version>2.13.0</gwt.version>
-        <spring-boot.version>4.0.2</spring-boot.version>
-        <!-- 33.5.0-jre issue: https://github.com/google/guava/issues/8168 -->
-        <guava.version>33.4.8-jre</guava.version>
+        <spring-boot.version>4.0.6</spring-boot.version>
+        <guava.version>33.6.0-jre</guava.version>
         <elemental2.version>1.2.3</elemental2.version>
         <domino-ui.version>2.1.0</domino-ui.version>
         <saxon-he.version>12.9</saxon-he.version>
-        <playwright.version>1.57.0</playwright.version>
+        <playwright.version>1.59.0</playwright.version>
 
         <!-- Spring Boot dependency properties — update them whenever you upgrade the Spring Boot version. -->
         <mockito.version>5.20.0</mockito.version>
