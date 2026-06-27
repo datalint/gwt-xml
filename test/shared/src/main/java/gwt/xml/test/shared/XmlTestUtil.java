@@ -1,10 +1,10 @@
 package gwt.xml.test.shared;
 
-public class SharedUtil {
+public class XmlTestUtil {
     public static String lower(String string) {
         return string.toLowerCase();
     }
 
-    private SharedUtil() {
+    private XmlTestUtil() {
     }
 }
