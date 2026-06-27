@@ -4,6 +4,7 @@ import com.google.gwt.core.client.EntryPoint;
 import gwt.xml.client.AssertionsC;
 import gwt.xml.shared.XPath;
 import gwt.xml.shared.XmlParser;
+import gwt.xml.test.shared.SharedUtil;
 import org.dominokit.domino.ui.style.Color;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -38,6 +39,8 @@ public class App implements EntryPoint {
         XPathBuilderTestC.getInstance().testBuild();
         XPathTestC.getInstance().test();
         XPathUtilTestC.getInstance().testUtil();
+
+        assertEquals("abc", SharedUtil.lower("ABC"));
     }
 
     private void testCompareDocumentPosition() {
