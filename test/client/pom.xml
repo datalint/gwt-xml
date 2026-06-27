@@ -46,7 +46,7 @@
                 <artifactId>gwt-maven-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
-                    <moduleName>gwt.xml.test.client.App</moduleName>
+                    <moduleName>gwt.xml.test.Test</moduleName>
                     <moduleShortName>app</moduleShortName>
                     <workDir>${basedir}/target/gwt/workDir</workDir>
                     <compilerArgs>
