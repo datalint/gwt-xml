@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.datalint.gwt.xml</groupId>
         <artifactId>xml-parent</artifactId>
-        <version>1.0</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>xml-server</artifactId>
@@ -37,7 +37,6 @@
         <plugins>
             <!-- Create a tests.jar -->
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <executions>
                     <execution>

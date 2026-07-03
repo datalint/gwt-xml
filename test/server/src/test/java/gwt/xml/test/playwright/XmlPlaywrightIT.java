@@ -6,7 +6,7 @@ import org.junit.jupiter.api.*;
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class XmlPlaywrightTest {
+class XmlPlaywrightIT {
     // Shared between all tests in the class.
     Playwright playwright;
     Browser browser;

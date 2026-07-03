@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.datalint.gwt.xml</groupId>
         <artifactId>xml-test-parent</artifactId>
-        <version>1.0</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>xml-test-server</artifactId>
@@ -63,8 +63,8 @@
                     <mainClass>gwt.xml.test.server.Application</mainClass>
                 </configuration>
             </plugin>
+
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <executions>
                     <execution>
@@ -87,15 +87,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>**/playwright/**</exclude>
-                    </excludes>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 
@@ -116,6 +107,7 @@
                 </dependency>
             </dependencies>
         </profile>
+
         <profile>
             <id>env-dev</id>
             <activation>
