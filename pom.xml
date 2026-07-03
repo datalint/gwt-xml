@@ -18,15 +18,15 @@
         <xml.version>1.0</xml.version>
 
         <gwt.version>2.13.1</gwt.version>
-        <spring-boot.version>4.0.6</spring-boot.version>
+        <spring-boot.version>4.1.0</spring-boot.version>
         <guava.version>33.6.0-jre</guava.version>
-        <elemental2.version>1.2.3</elemental2.version>
+        <elemental2.version>1.3.2</elemental2.version>
         <domino-ui.version>2.1.0</domino-ui.version>
-        <saxon-he.version>12.9</saxon-he.version>
-        <playwright.version>1.59.0</playwright.version>
+        <saxon-he.version>13.0</saxon-he.version>
+        <playwright.version>1.61.0</playwright.version>
 
         <!-- Spring Boot dependency properties — update them whenever you upgrade the Spring Boot version. -->
-        <mockito.version>5.20.0</mockito.version>
+        <mockito.version>5.23.0</mockito.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
