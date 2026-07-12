@@ -70,8 +70,11 @@ public interface ICommon {
     String WILDCARD = "*";
     String ZERO = "0";
 
+    ICommon instance = new ICommon() {
+    };
+
     static ICommon getInstance() {
-        return Lazy.instance;
+        return instance;
     }
 
     default String afterIndex(String source, int index) {
@@ -262,9 +265,5 @@ public interface ICommon {
         public int size() {
             return extraList == null ? length : length + extraList.size();
         }
-    }
-
-    class Lazy implements ICommon {
-        private static final ICommon instance = new Lazy();
     }
 }
