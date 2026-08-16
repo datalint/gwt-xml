@@ -184,6 +184,10 @@ public interface ICommon {
         return source == null || source.toString().isEmpty();
     }
 
+    default boolean isBlank(Object source) {
+        return source == null || source.toString().isBlank();
+    }
+
     default String nonNull(String source) {
         return coalesce(source, EMPTY);
     }
